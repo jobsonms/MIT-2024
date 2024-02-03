@@ -1,4 +1,30 @@
+<!DOCTYPE html>
 <html>
-<h1> MIT 2024 - Test </h1>
-<p>Thanks, GitHub!</p>
+<body>
+<p>Your current location and the current time:</p>
+<p id="location"></p>
+<p id="time"></p>
+
+<script>
+window.onload = function() {
+  getLocation();
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  document.getElementById("location").innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+
+  var currentTime = new Date();
+  document.getElementById("time").innerHTML = "Current time: " + currentTime.toLocaleString();
+}
+</script>
+</body>
 </html>
